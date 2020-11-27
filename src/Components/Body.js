@@ -9,10 +9,10 @@ let Body = (props) => {
   let dispatch = useDispatch();
 
   todoList.reverse();
-  let todos;
+  let todos = undefined;
   if (todoList.length > 0) {
     todos = todoList.map((element, index) => {
-      return <Item key={index} data={element} counter={index + 1} />;
+      return <Item key={element.id} data={element} counter={index + 1} />;
     });
   }
 

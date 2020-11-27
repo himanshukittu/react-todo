@@ -1,15 +1,20 @@
 import { Col, Input, Row, Tag } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CloseOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import * as actions from "../Reducer/actions";
 
 let Item = (props) => {
   let dispatch = useDispatch();
-  let [todoData, setTodoData] = useState(props.data.message);
+  let [todoData, setTodoData] = useState("");
   let closeThisTodo = (ev) => {
     dispatch({ type: actions.REMOVE_TODO, payload: { id: ev } });
   };
+
+  useEffect(() => {
+    setTodoData(props.data.message);
+  }, []);
+
   return (
     <>
       <Row justify="center">

@@ -11,12 +11,10 @@ let reducer = (state = initialState, action) => {
       message: action.payload,
       color: getColor(),
     };
-    state = {
+    return {
       ...state,
       todoList: [...state.todoList, newTodo],
     };
-    // await set("todoList", state.todoList);
-    return state;
   } else if (action.type === actions.REMOVE_TODO) {
     let updatedList = [];
     state.todoList.forEach((element) => {
@@ -24,17 +22,16 @@ let reducer = (state = initialState, action) => {
         updatedList.push(element);
       }
     });
-    state = {
+
+    return {
       ...state,
-      todoList: updatedList,
+      todoList: [...updatedList],
     };
-    return state;
   } else if (action.type === actions.POPULATE_FROM_IDB) {
-    state = {
+    return {
       ...state,
-      todoList: [...state.todoList, ...action.payload],
+      todoList: [...action.payload],
     };
-    return state;
   } else {
     return state;
   }
