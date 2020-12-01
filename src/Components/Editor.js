@@ -25,12 +25,13 @@ const Editor = (props) => {
       <Row justify="center" style={{ marginTop: 5 }}>
         <Col span={8}>
           <Input
+            data-testid="editIt"
             value={newTodo}
             onChange={(event) => setNewTodo(event.target.value)}
             onKeyDown={(ev) => {
               return ev.key === "Enter" ? handleAddTodo() : null;
             }}
-            addonAfter={<PlusOutlined onClick={() => handleAddTodo()} />}
+            addonAfter={<PlusOutlined data-testid="UT_Add" onClick={() => handleAddTodo()} />}
           />
         </Col>
       </Row>

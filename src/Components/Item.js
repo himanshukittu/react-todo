@@ -7,6 +7,7 @@ import * as actions from "../Reducer/actions";
 let Item = (props) => {
   let dispatch = useDispatch();
   let [todoData, setTodoData] = useState("");
+
   let closeThisTodo = (ev) => {
     dispatch({ type: actions.REMOVE_TODO, payload: { id: ev } });
   };
@@ -44,6 +45,7 @@ let Item = (props) => {
               }}
             />
             <CloseOutlined
+              data-testid="close"
               style={{ float: "right", marginTop: "7px" }}
               onClick={() => closeThisTodo(props.data.id)}
             />

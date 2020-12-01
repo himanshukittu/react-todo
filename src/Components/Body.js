@@ -36,7 +36,7 @@ let Body = (props) => {
         </Col>
       </Row>
 
-      {todos ? todos : "Todo list is Empty!"}
+  {todos ? <span data-testid="YData">{todos}</span> : <span data-testid="noData">{"Todo list is Empty!"}</span>}
     </>
   );
 };
