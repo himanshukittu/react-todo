@@ -17,3 +17,16 @@ export function* fetchTodoList(action) {
 export function* saveTodoList(action) {
   yield set("todoList", action.payload);
 }
+
+export function* getEmployeeList(action) {
+  let response = yield fetch(
+    "http://dummy.restapiexample.com/api/v1/employees",
+    {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+      },
+    }
+  );
+  console.log(response);
+}

@@ -1,8 +1,8 @@
 import { Col, Divider, Row } from "antd";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Item from "./Item";
-import * as actions from "../Reducer/actions";
+import Item from "../Item/Item";
+import * as actions from "../../../Reducer/actions";
 
 let Body = (props) => {
   let todoList = useSelector((state) => state.todoList);
@@ -36,7 +36,11 @@ let Body = (props) => {
         </Col>
       </Row>
 
-  {todos ? <span data-testid="YData">{todos}</span> : <span data-testid="noData">{"Todo list is Empty!"}</span>}
+      {todos ? (
+        <span data-testid="YData">{todos}</span>
+      ) : (
+        <span data-testid="noData">{"Todo list is Empty!"}</span>
+      )}
     </>
   );
 };

@@ -2,7 +2,7 @@ import { Col, Input, Row, Tag } from "antd";
 import React, { useEffect, useState } from "react";
 import { CloseOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
-import * as actions from "../Reducer/actions";
+import * as actions from "../../../Reducer/actions";
 
 let Item = (props) => {
   let dispatch = useDispatch();

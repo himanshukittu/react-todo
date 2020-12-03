@@ -2,7 +2,7 @@ import { Col, Input, Row } from "antd";
 import React, { useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
-import * as actions from "../Reducer/actions";
+import * as actions from "../../../Reducer/actions";
 
 const Editor = (props) => {
   let dispatch = useDispatch();
@@ -31,7 +31,12 @@ const Editor = (props) => {
             onKeyDown={(ev) => {
               return ev.key === "Enter" ? handleAddTodo() : null;
             }}
-            addonAfter={<PlusOutlined data-testid="UT_Add" onClick={() => handleAddTodo()} />}
+            addonAfter={
+              <PlusOutlined
+                data-testid="UT_Add"
+                onClick={() => handleAddTodo()}
+              />
+            }
           />
         </Col>
       </Row>
