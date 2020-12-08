@@ -16,7 +16,7 @@ let Body = (props) => {
     });
   }
 
-  //componentDidMount
+  //componentDidMount checking push
   useEffect(() => {
     dispatch({ type: actions.FETCH_TODOLIST });
   }, []);
