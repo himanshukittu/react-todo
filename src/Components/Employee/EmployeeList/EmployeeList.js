@@ -1,6 +1,7 @@
 import { Card, Col, Row, Space, Spin } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 // import * as actions from "../../../Reducer/actions";
 
 const EmployeeList = (props) => {
@@ -11,19 +12,13 @@ const EmployeeList = (props) => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch("https://jsonplaceholder.typicode.com/posts", {
-      method: "GET",
-      mode: "cors",
-      headers: {},
-    })
+    axios
+      .get("https://jsonplaceholder.typicode.com/posts")
       .then((response) => {
-        return response.json();
+        console.log("<<<<see here>>>", response);
+        setPosts(response.data);
       })
-      .then((data) => {
-        console.log(data);
-        setPosts(data);
-      })
-      .catch((err) => {})
+      .catch()
       .finally(() => {
         setIsLoading(false);
       });
@@ -50,7 +45,13 @@ const EmployeeList = (props) => {
 
   return (
     <>
-      {isLoading ? spinner : <Row justify="center">{cards ? cards : null}</Row>}
+      {isLoading ? (
+        spinner
+      ) : (
+        <Row justify="center" test-id="cardss">
+          {cards ? cards : null}
+        </Row>
+      )}
     </>
   );
 };

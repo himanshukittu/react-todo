@@ -10,7 +10,7 @@ import Item from "../Item/Item";
 configure({ adapter: new Adapter() });
 
 let mockStore = null;
-fdescribe("<Body/>", () => {
+describe("<Body/>", () => {
   beforeEach(() => {
     mockStore = configureStore();
     Object.defineProperty(window, "matchMedia", {
