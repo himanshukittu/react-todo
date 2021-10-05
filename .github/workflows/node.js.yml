@@ -1,21 +1,22 @@
 name: CI
 
-on: [push]
+on: 
+  push:
+    branches: 'uat'
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: [ubuntu-latest, windows-latest]
 
     strategy:
-      matrix:
-        node-version: [10.x]
+        node-version: 10.x
     
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ node-version }}
+      uses: actions/setup-node@v2
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: ${{ node-version }}
 
     - name: npm install...
       run: |
@@ -26,3 +27,5 @@ jobs:
     - name: npm build...
       run: |
         npm build --if-present
+    - name: send email>>
+      run: echo "Email being sent...>>"
