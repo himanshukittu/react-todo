@@ -13,7 +13,7 @@ const EmployeeList = (props) => {
   useEffect(() => {
     setIsLoading(true);
     axios
-      .get("https://jsonplaceholder.typicode.com/posts")
+      .get("http://3.7.134.217:9006/vsearch/getpercent?client_id=11", {headers : {"Access-Control-Allow-Origin": "*"}})
       .then((response) => {
         console.log("<<<<see here>>>", response);
         setPosts(response.data);
@@ -38,7 +38,7 @@ const EmployeeList = (props) => {
   });
 
   let spinner = (
-    <Space size="large">
+    <Space size="large" data-testid="spinner">
       <Spin size="large"></Spin>
     </Space>
   );
@@ -48,7 +48,7 @@ const EmployeeList = (props) => {
       {isLoading ? (
         spinner
       ) : (
-        <Row justify="center" test-id="cardss">
+        <Row justify="center" data-testid="cardss">
           {cards ? cards : null}
         </Row>
       )}

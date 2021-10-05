@@ -1,12 +1,11 @@
 import React from "react";
-// import { configure, mount, render, shallow } from "enzyme";
 import EmployeeList from "./EmployeeList";
 import configureStore from "redux-mock-store";
 import axios from "axios";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 import { Provider } from "react-redux";
-import { findByTestId, getByTestId, waitFor } from "@testing-library/react";
+import { getByTestId, waitFor } from "@testing-library/react";
 
 const fakePosts = [
   {
@@ -32,15 +31,11 @@ const fakePosts = [
       "et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut",
   },
 ];
-// jest.mock(axios);
-
-// configure({ adapter: new Adapter() });
 
 describe("<EmployeeList/>", () => {
   let mockStore;
   let container = null;
   beforeEach(() => {
-    // setup a DOM element as a render target
     container = document.createElement("div");
     document.body.appendChild(container);
     mockStore = configureStore();
@@ -64,44 +59,26 @@ describe("<EmployeeList/>", () => {
     unmountComponentAtNode(container);
     container.remove();
     mockStore = null;
-    container = null;
   });
 
   it("should fetch data from api", async () => {
-    // // expect.assertions(1);
-    // axios.get.mockResolvedValue({ data: fakePosts });
-    // // axios.get.mockResolvedValueOnce({ data: fakePosts });
     let initaialState = {};
     let store = mockStore(initaialState);
-    // let wrapper = render(
-    //   <Provider store={store}>
-    //     <EmployeeList />
-    //   </Provider>
-    // );
-    // // await act(() => {
-    // //   wrapper = shallow(
-    // //     <Provider store={store}>
-    // //       <EmployeeList />
-    // //     </Provider>
-    // //   );
-    // // });
-    // expect("" + wrapper).toBe(1);
-    // console.log(wrapper);
     jest.spyOn(axios, "get").mockImplementation(() => {
       return Promise.resolve({ data: fakePosts });
     });
 
-    await act(() => {
+    act(() => {
       render(
         <Provider store={store}>
           <EmployeeList />
         </Provider>,
         container
       );
+    }).then(async ()=>{
+      let ele = getByTestId(document,"spinner");
+      expect(ele).toBeDefined();
+      await waitFor(()=>expect(getByTestId("cardss",document)).toBeDefined())
     });
-
-    let ele = await waitFor(() => container.getByTestId("cardss"));
-    console.log(ele);
-    expect(ele).toBeDefined();
   });
 });

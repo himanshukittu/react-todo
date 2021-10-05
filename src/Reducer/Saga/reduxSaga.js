@@ -20,7 +20,7 @@ export function* saveTodoList(action) {
 
 export function* getEmployeeList(action) {
   let response = yield fetch(
-    "http://dummy.restapiexample.com/api/v1/employees",
+    "http://3.7.134.217:9006/vsearch/getpercent?client_id=11",
     {
       method: "GET",
       headers: {
