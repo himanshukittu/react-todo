@@ -38,7 +38,7 @@ jobs:
         # Required mail subject:
         subject: Github Actions job result
         # Required recipients' addresses:
-        to: himanshu.verma@ihx.in
+        to: team-boolean@ihx.in
         # Required sender full name (address can be skipped):
         from: Development admin # <user@example.com>
         # Optional whether this connection use TLS (default is true if server_port is 465)
