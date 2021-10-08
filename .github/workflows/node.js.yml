@@ -24,7 +24,7 @@ jobs:
     - name: npm build...
       run: |
         npm build --if-present
-    - name: Sending email...>>
+    - name: Sending email
       uses: dawidd6/action-send-mail@v3
       with:
         # Required mail server address:
