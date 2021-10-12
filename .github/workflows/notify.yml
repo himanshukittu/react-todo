@@ -23,5 +23,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      -name: Failure notify
-       run: echo Some error on build
+      - uses: actions/checkout@v2
+
+      - name: Notify Slack and send eMail
+        run: echo Test Failure
