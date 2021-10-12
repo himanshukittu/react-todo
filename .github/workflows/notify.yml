@@ -24,4 +24,4 @@ jobs:
 
     steps:
       -name: Failure notify
-        run: echo ITS a FAILURE build
+       run: echo Some error on build
