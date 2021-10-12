@@ -1,0 +1,27 @@
+name: CI notify
+
+# Only trigger, when the build workflow succeeded
+on:
+  workflow_run:
+    workflows: ["CI-Build"]
+    types:
+      - completed
+
+jobs:
+  notify_success:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Notify Slack and send eMail
+        run: echo Test success
+
+  notify_failure:
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      -name: Failure notify
+        run: echo ITS a FAILURE build
