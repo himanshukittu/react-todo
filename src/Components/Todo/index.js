@@ -1,6 +1,6 @@
 import React from "react";
-// import Body from "./Body/Body";
-// import Editor from "./Editor/Editor";
+import Body from "./Body/Body";
+import Editor from "./Editor/Editor";
 
 const Todo = (props) => {
   return (
