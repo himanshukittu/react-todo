@@ -1,29 +1,29 @@
-name: CI notify
+# name: CI notify
 
-# Only trigger, when the build workflow succeeded
-on:
-  workflow_run:
-    workflows: ["CI-Build"]
-    types:
-      - completed
+# # Only trigger, when the build workflow succeeded
+# on:
+#   workflow_run:
+#     workflows: ["CI-Build"]
+#     types:
+#       - completed
 
-jobs:
-  notify_success:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    runs-on: ubuntu-latest
+# jobs:
+#   notify_success:
+#     if: ${{ github.event.workflow_run.conclusion == 'success' }}
+#     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
+#     steps:
+#       - uses: actions/checkout@v2
 
-      - name: Notify Slack and send eMail
-        run: echo Test success
+#       - name: Notify Slack and send eMail
+#         run: echo Test success
 
-  notify_failure:
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-    runs-on: ubuntu-latest
+#   notify_failure:
+#     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+#     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
+#     steps:
+#       - uses: actions/checkout@v2
 
-      - name: Notify Slack and send eMail
-        run: echo Test Failure
+#       - name: Notify Slack and send eMail
+#         run: echo Test Failure
