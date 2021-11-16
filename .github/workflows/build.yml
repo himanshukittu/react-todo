@@ -1,7 +1,7 @@
 name: CI-Build
 
 on: 
-  push:
+  pull_request:
     branches: 'master'
 
 jobs:
@@ -26,97 +26,10 @@ jobs:
         npm run build --if-present
     - name: Notify failure via email
       if: failure()
-      uses: dawidd6/action-send-mail@v3
-      with:
-        # Required mail server address:
-        server_address: smtp.gmail.com
-        # Required mail server port:
-        server_port: 465
-        # # Optional (recommended): mail server username:
-        username: ${{secrets.ADMIN_EMAIL}}
-        # # Optional (recommended) mail server password:
-        password: ${{secrets.ADMIN_EMAIL_PASSWORD}}
-        # Required mail subject:
-        subject: BUILD FAILED [${{github.repository}}]
-        # Required recipients' addresses:
-        to: himanshu.verma@ihx.in
-        # Required sender full name (address can be skipped):
-        from: dev-admin # <user@example.com>
-        # Optional whether this connection use TLS (default is true if server_port is 465)
-        secure: true
-        # Optional plain body:
-        # body:
-        # Optional HTML body read from file:
-        html_body:
-          <div>
-            <h4>Build job of ${{github.repository}} at branch ${{github.ref}} failed!</h4>
-            <div><strong>${{github.actor}}</strong> please check your commits.</div>
-            <div>
-              Following could be the reason for failing the build
-              <ol>
-                <li>Broken unit test cases</li>
-                <li>Broken e2e test cases</li>
-                <li>Some runtime issue related to your code</li>
-              </ol>
-              Please fix the code and patch the same
-            </div>
-          </div>
-        # Optional carbon copy recipients:
-        # cc: kyloren@example.com,leia@example.com
-        # Optional blind carbon copy recipients:
-        # bcc: r2d2@example.com,hansolo@example.com
-        # Optional recipient of the email response:
-        # reply_to: luke@example.com
-        # Optional unsigned/invalid certificates allowance:
-        ignore_cert: true
-        # Optional converting Markdown to HTML (set content_type to text/html too):
-        convert_markdown: true
-        # Optional attachments:
-        # attachments: attachments.zip,git.diff,./dist/static/*.js
-        # Optional priority: 'high', 'normal' (default) or 'low'
-        priority: high
+      run: echo "FAILURE"
     - name: Notify success via email
       if: success()
-      uses: dawidd6/action-send-mail@v3
-      with:
-          # Required mail server address:
-          server_address: smtp.gmail.com
-          # Required mail server port:
-          server_port: 465
-          # # Optional (recommended): mail server username:
-          username: ${{secrets.ADMIN_EMAIL}}
-          # # Optional (recommended) mail server password:
-          password: ${{secrets.ADMIN_EMAIL_PASSWORD}}
-          # Required mail subject:
-          subject: BUILD SUCCESSFUL [${{github.repository}}]
-          # Required recipients' addresses:
-          to: team-boolean@ihx.in
-          # Required sender full name (address can be skipped):
-          from: dev-admin # <user@example.com>
-          # Optional whether this connection use TLS (default is true if server_port is 465)
-          secure: true
-          # Optional plain body:
-          # body: 
-          # Optional HTML body read from file:
-          html_body:
-             <div>
-              <strong>Woohooo!!!!</strong>
-              <h3>Build job of ${{github.repository}} given by ${{github.actor}} at branch ${{github.ref}} completed successfully!</h3>
-            </div>
-          # Optional carbon copy recipients:
-          # cc: kyloren@example.com,leia@example.com
-          # Optional blind carbon copy recipients:
-          # bcc: r2d2@example.com,hansolo@example.com
-          # Optional recipient of the email response:
-          # reply_to: luke@example.com
-          # Optional unsigned/invalid certificates allowance:
-          ignore_cert: true
-          # Optional converting Markdown to HTML (set content_type to text/html too):
-          convert_markdown: true
-          # Optional attachments:
-          # attachments: attachments.zip,git.diff,./dist/static/*.js
-          # Optional priority: 'high', 'normal' (default) or 'low'
-          priority: low
+      run: echo "SUCCESS test for PR from master"
     - name: Github context
       if: always()
       run: echo "${{ toJson(github) }}"
