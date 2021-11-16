@@ -26,10 +26,10 @@ jobs:
         npm run build --if-present
     - name: Notify failure via email
       if: failure()
-      run: echo "FAILURE"
+      run: echo "FAILURE for check for commit on PR"
     - name: Notify success via email
       if: success()
-      run: echo "SUCCESS"
+      run: echo "SUCCESS test for PR from master"
     - name: Github context
       if: always()
       run: echo "${{ toJson(github) }}"
